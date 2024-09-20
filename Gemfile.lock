@@ -1,0 +1,13 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    titleize (1.4.1)
+
+PLATFORMS
+  x86_64-linux
+
+DEPENDENCIES
+  titleize
+
+BUNDLED WITH
+   2.3.10

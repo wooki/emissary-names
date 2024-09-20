@@ -1,0 +1,39 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require_relative '../lib/emissary-names.rb'
+
+# parse command line options
+options = {
+   culture: 'fantasy',
+   number: 10
+}
+OptionParser.new do | opts |
+   opts.banner = "Usage: emissary-names --culture=maritime --number=10"
+
+   opts.on("-cCULTURE", "--culture=CULTURE", "Culture from which to draw the names") do |n|
+     options[:culture] = n
+   end
+
+   opts.on("-sSEED", "--seed=SEED", "Seed for random generation") do |n|
+     options[:seed] = n.to_i
+   end
+
+   opts.on("-nNUMBER", "--number=NUMBER", "How many names to generate") do |n|
+     options[:number] = n.to_i
+   end
+
+end.parse!
+
+seed = options[:seed]
+seed = Random.new_seed if !seed
+srand seed
+
+ng = Emissary::Names.for_culture(options[:culture])
+
+names = Array.new
+for i in 1..options[:number]
+   names.push ng.get_name
+end
+
+pp names
