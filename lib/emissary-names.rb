@@ -9,12 +9,12 @@ class Names
     attr_accessor :culture, :data
 
     @@rules = {
-      desert: { desert: 21..100 },
-      arid: { desert: 2..21 },
-      mountainous: { mountain: 20..100 },
-      forested: { forest: 30..100 },
-      maritime: { ocean: 75..100 },
-      lowland: { lowland: 40..100 },
+      desert: { desert: 50..100 },
+      arid: { desert: 5..50 },
+      mountainous: { mountain: 30..100 },
+      forested: { forest: 45..100 },
+      lowland: { lowland: 50..100 },
+      maritime: { ocean: 80..100 },
       fantasy: {} # Fallback generator
     }
 
@@ -77,9 +77,16 @@ class Names
     end
 
     def self.passing_rules(terrain_hash, rules)
-      total_rating = terrain_hash.values.sum.to_f
-      percentages = terrain_hash.transform_values { |rating| ((rating / total_rating) * 100).to_i }
 
+      puts "terrain_hash: #{terrain_hash.inspect}"
+      
+      # work out percentrage of non-ocean only and then ocean
+      # (so won't add up to 100% but much more useful)
+      total_rating = terrain_hash.values.sum.to_f
+      total_rating_excluding_ocean = terrain_hash.reject { |k, _| k == 'ocean' }.values.sum.to_f
+      percentages = terrain_hash.reject { |k, _| k == 'ocean' }.transform_values { |rating| ((rating / total_rating_excluding_ocean) * 100).to_i }
+      percentages[:ocean] = ((terrain_hash['ocean'] / total_rating) * 100).to_i
+      
       passed_rules = []
 
       rules.each do |group, terrain_rules|
