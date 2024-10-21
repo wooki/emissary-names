@@ -78,8 +78,6 @@ class Names
 
     def self.passing_rules(terrain_hash, rules)
 
-      puts "terrain_hash: #{terrain_hash.inspect}"
-      
       # work out percentrage of non-ocean only and then ocean
       # (so won't add up to 100% but much more useful)
       total_rating = terrain_hash.values.sum.to_f
