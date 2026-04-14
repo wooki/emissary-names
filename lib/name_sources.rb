@@ -849,6 +849,46 @@ module Emissary
       "see", "tal", "thal", "fels", "ruh", "mark", "stern", "rode"
     ]
 
+    # Given names for minor noble knights, by culture.
+    # Used by Names#get_knight_name to produce titles like "Sir Aldric" or "Ritter Wolfram".
+    KNIGHT_NAMES = {
+      desert: %w[
+        Tariq Khalid Omar Hassan Rashid Malik Samir Yusuf Ibrahim Zaid
+        Faris Qadir Jafar Karim Nasir Hamid Jalal Munir Salim Tahir
+        Bilal Dawud Harun Ismail Sulayman
+      ],
+      arid: %w[
+        Rodrigo Sancho Fernando Álvaro Gonzalo Ramiro García Pelayo
+        Bermudo Nuño Diego Lope Jimeno Fortún Blasco Aznar Munio Vela
+        Fadrique Enrique Alfonso Jaime Bernat Ordoño Fruela
+      ],
+      mountainous: %w[
+        Bjorn Sigurd Gunnar Erik Leif Ragnar Sven Harald Thorvald Ivar
+        Ulf Orm Knut Magnus Halfdan Haakon Ingvar Ragnald Asgeir Folkvar
+        Grimr Hrólf Ketil Steinar Vidar
+      ],
+      forested: %w[
+        Caradoc Gareth Mareddudd Cynon Peredur Urien Bedwyr Tristan Bran
+        Llywelyn Cadoc Owain Geraint Emrys Hywel Rhodri Maelgwn Cadwaladr
+        Iorwerth Gruffudd Einion Dafydd Cai Gwalchmai Rhys
+      ],
+      lowland: %w[
+        Aldric Wolfram Gerhard Heinrich Dietrich Friedrich Burkhard Reinhard
+        Gottfried Albrecht Konrad Siegfried Ottmar Hermann Wulfric Berthold
+        Eckhard Rudolf Gunther Leopold Walther Hartmann Eberhard Ulrich Rüdiger
+      ],
+      maritime: %w[
+        Marco Luca Nicolo Giacomo Benedetto Lorenzo Bartolomeo Matteo Giovanni
+        Filippo Rinaldo Ottavio Cesare Federico Stefano Guido Aldo Taddeo
+        Fausto Piero Corrado Alvise Cristoforo Dandolo Grimani
+      ],
+      fantasy: %w[
+        Aldric Gareth Magnus Sigurd Marco Caradoc Wolfram Bjorn Omar Fernando
+        Erik Llywelyn Tristan Owain Reinhard Rashid Luca Cynon Halfdan Diego
+        Gunnar Geraint Ivar Bartolomeo Hywel
+      ]
+    }
+
     def for_culture(culture)
       return @@desert if culture == :desert
       return @@mountainous if culture == :mountainous

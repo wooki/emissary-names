@@ -19,6 +19,17 @@ class Names
       fantasy: {} # Fallback generator
     }
 
+    # Honorifics for minor noble knights, by culture.
+    KNIGHT_TITLES = {
+      desert:      ["Sheikh", "Bey"],
+      arid:        ["Don", "Sir"],
+      mountainous: ["Thane", "Sir"],
+      forested:    ["Sir"],
+      lowland:     ["Ritter", "Sir"],
+      maritime:    ["Messer", "Don", "Sir"],
+      fantasy:     ["Sir", "Dame"]
+    }
+
     # Culture-appropriate particles for family names. nil = no particle.
     PARTICLES = {
       desert:      ["al-", "ibn ", "abu ", "umm "],
@@ -104,14 +115,30 @@ class Names
       end
     end
 
+    # Generate a knight name appropriate to this culture: a title plus a
+    # historically-grounded given name (e.g. "Sir Aldric", "Ritter Wolfram",
+    # "Sheikh Tariq", "Thane Bjorn").  Names are drawn from KNIGHT_NAMES seed
+    # lists rather than the syllable engine, so they read as personal names
+    # rather than place names.  Each name is used at most once per namer
+    # instance; if the pool is exhausted duplicates are allowed.
+    def get_knight_name
+      names = Emissary::NameSources::KNIGHT_NAMES[@culture]
+      available = names.reject { |n| @generated_knights.include?(n.downcase) }
+      name = available.empty? ? names.sample : available.sample
+      @generated_knights << name.downcase
+      title = KNIGHT_TITLES[@culture].sample
+      "#{title} #{name}"
+    end
+
     private
 
     def initialize(culture)
       @culture = culture.to_sym
       @utils = Emissary::NameUtils.new
       @names = Emissary::NameSources.new
-      @generated_places  = Set.new
+      @generated_places   = Set.new
       @generated_families = Set.new
+      @generated_knights  = Set.new
 
       if @culture == :fantasy
         @data = Emissary::NameSources.data_for_fantasy
