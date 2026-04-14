@@ -44,81 +44,36 @@ module Emissary
             { prefixes: prefixes, suffixes: suffixes, base_words: base_words }
           end                  
           
+          # Vowels including common diacritics found in source word lists.
+          VOWELS = "aeiouyàáâãäåæèéêëìíîïòóôõöøùúûüý"
+
           def split_into_syllables(word)
             return [word] if word.length <= 1
-          
-            vowels = "aeiouy"
-            syllables = []
-            current_syllable = ""
-            switch_on = :none
-            last_char = nil
-
-            word.each_char do |char|
-                                
-                if !last_char.nil? and last_char == char and !vowels.include?(char) # always break on double consonants
-                    current_syllable += char
-                    syllables << current_syllable
-                    current_syllable = ""
-                    switch_on = :none 
-
-                elsif !last_char.nil? and vowels.include?(char) and vowels.include?(last_char) # never break on double vowels
-
-                    current_syllable += char
-                    switch_on = :consonant
-
-                elsif (switch_on == :vowel and vowels.include?(char)) or (switch_on == :consonant and !vowels.include?(char))                    
-                    syllables << current_syllable unless current_syllable.empty?
-                    switch_on = :none                    
-                    current_syllable = char
-                else
-                    current_syllable += char
-
-                    if switch_on == :none
-                        if vowels.include?(char)
-                            switch_on = :vowel
-                        else
-                            switch_on = :none
-                        end
-                    end
-                end   
-                
-                last_char = char
-            end
-          
-            syllables << current_syllable unless current_syllable.empty?
-            syllables
+            # Each syllable: (optional leading consonants)(one or more vowels)(optional trailing consonants)
+            # This onset-maximisation approach correctly places consonants with the following vowel,
+            # e.g. "Valhalla" -> ["Val", "hal", "la"], "Silberburg" -> ["Sil", "ber", "burg"]
+            chunks = word.scan(/[^#{VOWELS}]*[#{VOWELS}]+[^#{VOWELS}]*/i)
+            chunks.empty? ? [word] : chunks
           end
 
           def extract_syllables(words)
             starts = []
             middles = []
             ends = []
-            lengths = Hash.new
-          
+            lengths = Hash.new(0)
+
             words.each do |word|
-              # Split the word into syllables
               syllables = split_into_syllables(word.downcase)
+              word_middles = syllables[1..-2] || []
 
-              # Extract start, middle, and end syllables
-              start_syllable = syllables[0] || ""
-              end_syllable = syllables[-1] || ""
-              middle_syllables = Array.new if middle_syllables.nil?
-              middle_syllables = middle_syllables.concat(syllables[1..-2])
-
-              # Add syllables to respective arrays
-              starts << start_syllable
-              middles.concat middle_syllables
-              ends << end_syllable
-
-              if lengths[middle_syllables.length]
-                lengths[middle_syllables.length] += 1
-              else
-                lengths[middle_syllables.length] = 1
-              end
+              starts << (syllables[0] || "")
+              middles.concat word_middles
+              ends << (syllables[-1] || "")
+              lengths[word_middles.length] += 1
             end
-          
+
             { starts: starts.uniq, middles: middles.uniq, ends: ends.uniq, lengths: lengths }
-        end      
+        end
         
         def get_data_for_words(words)             
             data = extract_prefix_suffix(words)

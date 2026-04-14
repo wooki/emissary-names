@@ -6,12 +6,13 @@ require_relative '../lib/emissary-names.rb'
 # parse command line options
 options = {
    culture: 'fantasy',
-   number: 10
+   number: 10,
+   type: 'place'
 }
 OptionParser.new do | opts |
-   opts.banner = "Usage: emissary-names --culture=maritime --number=10"
+   opts.banner = "Usage: emissary-names --culture=maritime --number=10 --type=place|family"
 
-   opts.on("-cCULTURE", "--culture=CULTURE", "Culture from which to draw the names") do |n|
+   opts.on("-cCULTURE", "--culture=CULTURE", "Culture: desert, arid, mountainous, forested, lowland, maritime, fantasy") do |n|
      options[:culture] = n
    end
 
@@ -23,6 +24,10 @@ OptionParser.new do | opts |
      options[:number] = n.to_i
    end
 
+   opts.on("-tTYPE", "--type=TYPE", "Name type: place (default) or family") do |n|
+     options[:type] = n
+   end
+
 end.parse!
 
 seed = options[:seed]
@@ -32,8 +37,8 @@ srand seed
 ng = Emissary::Names.for_culture(options[:culture])
 
 names = Array.new
-for i in 1..options[:number]
-   names.push ng.get_name
+options[:number].times do
+  names.push(options[:type] == 'family' ? ng.get_family_name : ng.get_name)
 end
 
 pp names

@@ -99,7 +99,46 @@ module Emissary
       "Kangavar",
       "Kharg Island",
       "Luristan",
-      "Baghdad"
+      "Baghdad",
+      # Silk Road / Central Asia
+      "Samarkand",
+      "Bukhara",
+      "Nishapur",
+      "Herat",
+      "Balkh",
+      "Khiva",
+      "Termez",
+      "Urgench",
+      "Dunhuang",
+      "Kashgar",
+      "Turfan",
+      "Ghazni",
+      "Kandahar",
+      # Arabian Peninsula
+      "Petra",
+      "Aden",
+      "Muscat",
+      "Sohar",
+      "Salalah",
+      "Marib",
+      "Hormuz",
+      # Nubian / Egyptian
+      "Thebes",
+      "Memphis",
+      "Meroe",
+      "Napata",
+      "Tanis",
+      "Abydos",
+      "Akhetaten",
+      # More ancient Mesopotamia
+      "Assur",
+      "Ebla",
+      "Tuttul",
+      "Kalhu",
+      "Arrapha",
+      "Harappa",
+      "Lothal",
+      "Dholavira"
     ]
 
     @@mountainous = [
@@ -179,7 +218,53 @@ module Emissary
       "Ålesund",
       "Århus",
       "Ängelholm",
-      "Östersund"
+      "Östersund",
+      # More Norwegian
+      "Arendal",
+      "Bodø",
+      "Drammen",
+      "Fredrikstad",
+      "Gjøvik",
+      "Hamar",
+      "Harstad",
+      "Kongsberg",
+      "Molde",
+      "Namsos",
+      "Narvik",
+      "Sandefjord",
+      "Sarpsborg",
+      "Lillehammer",
+      "Porsgrunn",
+      # Finnish
+      "Helsinki",
+      "Tampere",
+      "Lahti",
+      "Jyväskylä",
+      "Kuopio",
+      "Rovaniemi",
+      "Joensuu",
+      "Kajaani",
+      "Pori",
+      "Rauma",
+      "Hämeenlinna",
+      "Kouvola",
+      # More Icelandic
+      "Borgarnes",
+      "Dalvík",
+      "Egilsstaðir",
+      "Ísafjörður",
+      "Selfoss",
+      "Sauðárkrókur",
+      "Siglufjörður",
+      # More Danish
+      "Fredericia",
+      "Horsens",
+      "Randers",
+      "Silkeborg",
+      "Vejle",
+      "Holbæk",
+      "Næstved",
+      "Kolding"
     ]
 
     @@arid = [
@@ -234,7 +319,78 @@ module Emissary
       "Zagra",
       "Zaidin",
       "Zamarramala",
-      "Zamora"
+      "Zamora",
+      "Agadir",
+      "Alcazarquivir",
+      "Alicante",
+      "Almodovar",
+      "Asilah",
+      "Azrou",
+      "Badajoz",
+      "Baza",
+      "Beni Mellal",
+      "Caceres",
+      "Carmona",
+      "Chefchaouen",
+      "Coin",
+      "Ecija",
+      "Errachidia",
+      "Fuengirola",
+      "Guelmin",
+      "Huelva",
+      "Ifrane",
+      "Jaen",
+      "Khenifra",
+      "Loja",
+      "Lucena",
+      "Marbella",
+      "Merida",
+      "Midelt",
+      "Mijas",
+      "Montoro",
+      "Moulay Idriss",
+      "Murcia",
+      "Osuna",
+      "Ouarzazate",
+      "Priego",
+      "Safi",
+      "Sefrou",
+      "Taroudant",
+      "Taza",
+      "Tinghir",
+      "Tiznit",
+      "Valencia",
+      "Zagora",
+      # Tunisian
+      "Kairouan",
+      "Sfax",
+      "Sousse",
+      "El Jem",
+      "Tozeur",
+      "Gafsa",
+      "Gabès",
+      "Monastir",
+      "Mahdia",
+      "Bizerte",
+      "Nabeul",
+      "Hammamet",
+      # Classical Libyan / North African
+      "Leptis Magna",
+      "Sabratha",
+      "Cyrene",
+      "Apollonia",
+      "Berenice",
+      "Ptolemais",
+      # More Iberian
+      "Tortosa",
+      "Lerida",
+      "Orihuela",
+      "Cuenca",
+      "Almaden",
+      "Plasencia",
+      "Trujillo",
+      "Zaragoza",
+      "Teruel"
     ]
 
     @@forested = [
@@ -352,7 +508,50 @@ module Emissary
       "Tycroes",
       "Tywyn",
       "Ynys",
-      "Ystrad"
+      "Ystrad",
+      # Breton (shares Celtic phonetic patterns with Welsh)
+      "Quimper",
+      "Douarnenez",
+      "Concarneau",
+      "Morlaix",
+      "Landerneau",
+      "Lesneven",
+      "Quimperlé",
+      "Pontivy",
+      "Guingamp",
+      "Lannion",
+      "Roscoff",
+      "Carhaix",
+      "Paimpol",
+      "Dinan",
+      "Guémené",
+      "Rostrenen",
+      "Châteaulin",
+      # Cornish
+      "Bodmin",
+      "Camborne",
+      "Helston",
+      "Penzance",
+      "Redruth",
+      "Truro",
+      "Padstow",
+      "Lostwithiel",
+      "Penryn",
+      "Liskeard",
+      "Launceston",
+      # Scottish Gaelic
+      "Dingwall",
+      "Invergordon",
+      "Kingussie",
+      "Strathpeffer",
+      "Lochinver",
+      "Golspie",
+      "Dornoch",
+      "Helmsdale",
+      "Lairg",
+      "Tain",
+      "Brora",
+      "Tongue"
     ]
 
     @@maritime  = [
@@ -441,7 +640,43 @@ module Emissary
       "Santa Fiora",
       "Suvereto",
       "Valiano",
-      "Vinci"
+      "Vinci",
+      # Southern Italian
+      "Amalfi",
+      "Bari",
+      "Brindisi",
+      "Cagliari",
+      "Catania",
+      "Gaeta",
+      "Lecce",
+      "Messina",
+      "Otranto",
+      "Palermo",
+      "Salerno",
+      "Taranto",
+      "Trani",
+      "Reggio",
+      "Cosenza",
+      # Greek Aegean
+      "Corinth",
+      "Argos",
+      "Patras",
+      "Nafplio",
+      "Monemvasia",
+      "Thessaloniki",
+      "Kavala",
+      "Chalcis",
+      "Naupaktos",
+      "Gythion",
+      # Dalmatian coast
+      "Dubrovnik",
+      "Split",
+      "Zadar",
+      "Trogir",
+      "Kotor",
+      "Sibenik",
+      "Hvar",
+      "Korcula"
     ]
 
     @@lowland = [
@@ -544,7 +779,74 @@ module Emissary
       'Drachenheim',
       'Silberheim',
       'Adlerheim',
-      'Sternenheim'
+      'Sternenheim',
+      # Real German — adds variety to the syllable pools
+      'Augsburg',
+      'Bamberg',
+      'Coburg',
+      'Dortmund',
+      'Erfurt',
+      'Frankfurt',
+      'Goslar',
+      'Hamburg',
+      'Hannover',
+      'Heidelberg',
+      'Hildesheim',
+      'Kassel',
+      'Koblenz',
+      'Leipzig',
+      'Lüneburg',
+      'Magdeburg',
+      'Mainz',
+      'Mannheim',
+      'Marburg',
+      'Nürnberg',
+      'Passau',
+      'Quedlinburg',
+      'Regensburg',
+      'Rothenburg',
+      'Schwerin',
+      'Soest',
+      'Stralsund',
+      'Trier',
+      'Ulm',
+      'Würzburg',
+      # Dutch / Flemish / Hanseatic
+      'Arnhem',
+      'Breda',
+      'Delft',
+      'Deventer',
+      'Dordrecht',
+      'Groningen',
+      'Haarlem',
+      'Kampen',
+      'Leiden',
+      'Maastricht',
+      'Middelburg',
+      'Nijmegen',
+      'Utrecht',
+      'Venlo',
+      'Zutphen',
+      'Zwolle',
+      'Lübeck',
+      'Rostock',
+      'Wismar',
+      'Greifswald'
+    ]
+
+    # First and second elements for lowland compound family names (Option B).
+    # Drawn from patterns in @@lowland source words.
+    LOWLAND_FAMILY_FIRSTS = [
+      "Silber", "Eichen", "Falken", "Rosen", "Hohen", "Adler",
+      "Stein", "Eisen", "Sonnen", "Ritter", "Golden", "Drachen",
+      "Wald", "Hirsch", "Turm", "Sternen", "Eiben", "Morgen",
+      "Wolken", "Königs", "Gold", "Wolfs", "Elms", "Dorn"
+    ]
+
+    LOWLAND_FAMILY_SECONDS = [
+      "burg", "wald", "rath", "heim", "stein", "furt", "berg",
+      "feld", "bach", "meer", "stadt", "hafen", "hof", "horst",
+      "see", "tal", "thal", "fels", "ruh", "mark", "stern", "rode"
     ]
 
     def for_culture(culture)
@@ -719,16 +1021,21 @@ module Emissary
         "grath"
       ]
 
+      middle_words = [
+        "el", "al", "en", "an", "ar", "or", "ul", "ur", "il",
+        "eth", "ath", "ith", "eld", "end", "and", "orn", "ald"
+      ]
+
       {
         prefixes: [],
         suffixes: [],
         base_words: [],
         starts: start_words,
-        middles: [],
+        middles: middle_words,
         ends: end_words,
         prefix_frequency: 0,
         suffix_frequency: 0,
-        syllable_lengths: {0 => 1},
+        syllable_lengths: {0 => 4, 1 => 3, 2 => 1},
         source: []
       }
 
