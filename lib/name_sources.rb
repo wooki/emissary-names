@@ -849,43 +849,65 @@ module Emissary
       "see", "tal", "thal", "fels", "ruh", "mark", "stern", "rode"
     ]
 
-    # Given names for minor noble knights, by culture.
-    # Used by Names#get_knight_name to produce titles like "Sir Aldric" or "Ritter Wolfram".
+    # Given names for minor rural nobles, by culture.
+    # Used by Names#get_knight_name.  ~50 names per culture.
     KNIGHT_NAMES = {
       desert: %w[
         Tariq Khalid Omar Hassan Rashid Malik Samir Yusuf Ibrahim Zaid
         Faris Qadir Jafar Karim Nasir Hamid Jalal Munir Salim Tahir
         Bilal Dawud Harun Ismail Sulayman
+        Umar Abbas Husayn Walid Hisham Amr Said Badr Suhail Aqil
+        Safwan Qays Waqas Marwan Uqba Shuja Layth Anas Yazid Thabit
+        Ghazi Fadl Khayr Zafir Nizar
       ],
       arid: %w[
         Rodrigo Sancho Fernando Álvaro Gonzalo Ramiro García Pelayo
         Bermudo Nuño Diego Lope Jimeno Fortún Blasco Aznar Munio Vela
         Fadrique Enrique Alfonso Jaime Bernat Ordoño Fruela
+        Pedro Raimundo Gutierre Íñigo Berenguer Guillem Arnau Ramon
+        Guerau Ferran Bertran Egas Soeiro Mendo Afonso
+        Payo Galindo Miro Wifred Sunifred Ermengol Borrell Sunyer Oliba Galter
       ],
       mountainous: %w[
         Bjorn Sigurd Gunnar Erik Leif Ragnar Sven Harald Thorvald Ivar
         Ulf Orm Knut Magnus Halfdan Haakon Ingvar Ragnald Asgeir Folkvar
         Grimr Hrólf Ketil Steinar Vidar
+        Olaf Torsten Gudmund Frodi Styrr Gísli Egil Snorri Hall Bolli
+        Njal Flosi Kari Thorir Helgi Grettir Atle Dagr Brand
+        Arngrim Hrafn Vemund Oddr Ásmund Eystein
       ],
       forested: %w[
         Caradoc Gareth Mareddudd Cynon Peredur Urien Bedwyr Tristan Bran
         Llywelyn Cadoc Owain Geraint Emrys Hywel Rhodri Maelgwn Cadwaladr
         Iorwerth Gruffudd Einion Dafydd Cai Gwalchmai Rhys
+        Gwydion Culhwch Pwyll Pryderi Arthfael Meilyr Selyf Elffin
+        Taliesin Rhydderch Elgan Cynan Cadfael Iestyn
+        Adda Merfyn Seisyll Gwgan Nefydd Edern Coel Erbin Cystennin Morfan
       ],
       lowland: %w[
         Aldric Wolfram Gerhard Heinrich Dietrich Friedrich Burkhard Reinhard
         Gottfried Albrecht Konrad Siegfried Ottmar Hermann Wulfric Berthold
         Eckhard Rudolf Gunther Leopold Walther Hartmann Eberhard Ulrich Rüdiger
+        Wilhelm Karl Otto Werner Ernst Manfred Engelbert Arnulf Balduin
+        Dietmar Folker Goswin Hartwig Hubertus Kunz Meinhard Norbert
+        Volkmar Winrich Wernher Adalbert Bertram Siegbert Theodoric Immo
       ],
       maritime: %w[
         Marco Luca Nicolo Giacomo Benedetto Lorenzo Bartolomeo Matteo Giovanni
         Filippo Rinaldo Ottavio Cesare Federico Stefano Guido Aldo Taddeo
-        Fausto Piero Corrado Alvise Cristoforo Dandolo Grimani
+        Fausto Piero Corrado Alvise Cristoforo Enrico Ugolino
+        Antonio Francesco Sebastiano Pietro Angelo Bernardo Jacopo Lamberto
+        Orlando Guglielmo Manfredo Ranieri Ludovico Galeazzo Amedeo
+        Uberto Ottone Ansaldo Oberto Pandolfo Rainaldo Ezzelino Bonifacio
+        Corradino Galliano
       ],
       fantasy: %w[
         Aldric Gareth Magnus Sigurd Marco Caradoc Wolfram Bjorn Omar Fernando
         Erik Llywelyn Tristan Owain Reinhard Rashid Luca Cynon Halfdan Diego
         Gunnar Geraint Ivar Bartolomeo Hywel
+        Osric Leofric Godwin Aelric Cerdic Baldric Aldwin Edwyn Godric Ulfric
+        Aelwin Oswyn Miroslav Dragomir Radovan Branimir Svetoslav Kazimir
+        Vladislav Yaromir Dobroslav Boleslav Radomir Zlatko Borivoj
       ]
     }
 

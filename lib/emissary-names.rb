@@ -19,15 +19,67 @@ class Names
       fantasy: {} # Fallback generator
     }
 
-    # Honorifics for minor noble knights, by culture.
-    KNIGHT_TITLES = {
-      desert:      ["Sheikh", "Bey"],
-      arid:        ["Don", "Sir"],
-      mountainous: ["Thane", "Sir"],
-      forested:    ["Sir"],
-      lowland:     ["Ritter", "Sir"],
-      maritime:    ["Messer", "Don", "Sir"],
-      fantasy:     ["Sir", "Dame"]
+    # Flat list of {honorific:, title:} pairs for minor rural nobles, by culture.
+    # Sample uniformly — frequency of each tier is controlled by repetition count.
+    # To add a new tier or title, just add entries to the list.
+    MINOR_NOBLE_TITLES = {
+      desert: [
+        { honorific: "Sheikh",     title: "Knight" },
+        { honorific: "Sheikh",     title: "Knight" },
+        { honorific: "Bey",        title: "Knight" },
+        { honorific: "Emir",       title: "Lord"   },
+        { honorific: "Wali",       title: "Lord"   },
+        { honorific: "Malik",      title: "Baron"  },
+      ],
+      arid: [
+        { honorific: "Don",        title: "Knight" },
+        { honorific: "Don",        title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Señor",      title: "Lord"   },
+        { honorific: "Alcaide",    title: "Lord"   },
+        { honorific: "Adelantado", title: "Baron"  },
+      ],
+      mountainous: [
+        { honorific: "Thane",      title: "Knight" },
+        { honorific: "Thane",      title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Jarl",       title: "Lord"   },
+        { honorific: "Herse",      title: "Lord"   },
+        { honorific: "Hövding",    title: "Baron"  },
+      ],
+      forested: [
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Maer",       title: "Lord"   },
+        { honorific: "Lord",       title: "Lord"   },
+        { honorific: "Arglwydd",   title: "Baron"  },
+      ],
+      lowland: [
+        { honorific: "Ritter",     title: "Knight" },
+        { honorific: "Ritter",     title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Herr",       title: "Lord"   },
+        { honorific: "Junker",     title: "Lord"   },
+        { honorific: "Freiherr",   title: "Baron"  },
+      ],
+      maritime: [
+        { honorific: "Messer",     title: "Knight" },
+        { honorific: "Messer",     title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Signore",    title: "Lord"   },
+        { honorific: "Don",        title: "Lord"   },
+        { honorific: "Podestà",    title: "Baron"  },
+      ],
+      fantasy: [
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Sir",        title: "Knight" },
+        { honorific: "Dame",       title: "Knight" },
+        { honorific: "Lord",       title: "Lord"   },
+        { honorific: "Lady",       title: "Lord"   },
+        { honorific: "Baron",      title: "Baron"  },
+        { honorific: "Baroness",   title: "Baron"  },
+      ]
     }
 
     # Culture-appropriate particles for family names. nil = no particle.
@@ -115,19 +167,22 @@ class Names
       end
     end
 
-    # Generate a knight name appropriate to this culture: a title plus a
-    # historically-grounded given name (e.g. "Sir Aldric", "Ritter Wolfram",
-    # "Sheikh Tariq", "Thane Bjorn").  Names are drawn from KNIGHT_NAMES seed
-    # lists rather than the syllable engine, so they read as personal names
-    # rather than place names.  Each name is used at most once per namer
-    # instance; if the pool is exhausted duplicates are allowed.
+    # Generate a minor noble name appropriate to this culture.
+    # Returns {name: "Ritter Wolfram", title: "Knight"} or {name: "Freiherr Rudolf", title: "Baron"}.
+    # Picks uniformly from MINOR_NOBLE_TITLES — the distribution of Knight/Lord/Baron
+    # is set by how many entries of each type appear in the list.
+    # Given names are drawn from KNIGHT_NAMES seed lists (personal names, not place names).
+    # Each given name is used at most once per namer instance; falls back to duplicates
+    # if the pool is exhausted.
     def get_knight_name
-      names = Emissary::NameSources::KNIGHT_NAMES[@culture]
+      entry = MINOR_NOBLE_TITLES[@culture].sample
+
+      names     = Emissary::NameSources::KNIGHT_NAMES[@culture]
       available = names.reject { |n| @generated_knights.include?(n.downcase) }
-      name = available.empty? ? names.sample : available.sample
+      name      = (available.empty? ? names : available).sample
       @generated_knights << name.downcase
-      title = KNIGHT_TITLES[@culture].sample
-      "#{title} #{name}"
+
+      { name: "#{entry[:honorific]} #{name}", title: entry[:title] }
     end
 
     private
